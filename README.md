@@ -74,5 +74,3 @@ Proyek website portofolio interaktif yang dikembangkan menggunakan React 18 dan 
 * 📸 [Instagram](https://www.instagram.com/gilangrizky_000/)
 * ✉️ Email: `gilangrizkyramadhan34@gmail.com`
 * 📱 WhatsApp / Telepon: `0896-9415-6005`
-
-# Portofolio

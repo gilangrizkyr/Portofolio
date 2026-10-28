@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../lib/supabase';
 import { FaPaperPlane, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
 
-// eslint-disable-next-line no-unused-vars
 const ContactFormDB = () => {
   const [formData, setFormData] = useState({
     name: '',
