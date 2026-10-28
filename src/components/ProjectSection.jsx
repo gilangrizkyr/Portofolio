@@ -7,7 +7,8 @@ import {
 } from 'react-icons/fa';
 import {
   SiTailwindcss, SiNextdotjs, SiVercel, SiMongodb,
-  SiExpress, SiPostgresql
+  SiExpress, SiPostgresql, SiTypescript, SiDocker,
+  SiMysql, SiPhp, SiCodeigniter, SiLeaflet
 } from 'react-icons/si';
 import { PiCodeBold } from "react-icons/pi";
 import { LuBadge } from "react-icons/lu";
@@ -16,170 +17,133 @@ import { useNavbar } from '../contexts/NavbarContext';
 import { supabase } from '../lib/supabase';
 
 // ===================================
-// DATA PROYEK (FALLBACK - will be replaced by DB data)
+// DATA PROYEK GILANG RIZKY RAMADHAN
 // ===================================
 const dummyProjects = [
   {
-    title: "Portfolio v2",
-    description: "Website portofolio pribadi yang dibangun dengan React, Next.js, dan Tailwind CSS, di-deploy di Vercel.",
-    tech: ["Next.js", "React", "TailwindCSS", "Framer Motion"],
-    link: "https://github.com/username/portfolio",
+    title: "SurveiCoreSystem",
+    description: "Enterprise-grade survey infrastructure platform with multi-tenant architecture, bank-level security, and real-time analytics for government & corporate data governance.",
+    tech: ["PHP", "MySQL", "Multi-Tenant", "Analytics", "REST API"],
+    link: "https://github.com/gilangrizkyr/SurveiCoreSystem",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
     category: "Web/Apps",
   },
   {
-    title: "E-Commerce API",
-    description: "RESTful API untuk platform e-commerce dengan fitur otentikasi, manajemen produk, dan transaksi.",
-    tech: ["Node.js", "Express", "MongoDB", "JWT"],
-    link: "https://github.com/username/ecommerce-api",
-    image: "https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=2072&auto=format&fit=crop",
+    title: "WA Gateway (wagateaway)",
+    description: "API gateway WhatsApp dengan REST API berbasis token, WebSocket realtime, dan dashboard interaktif untuk menyederhanakan alur bisnis.",
+    tech: ["JavaScript", "Node.js", "Express", "WebSocket", "REST API"],
+    link: "https://github.com/gilangrizkyr/wagateaway",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2064&auto=format&fit=crop",
     category: "Web/Apps",
   },
   {
-    title: "UI Design System",
-    description: "Merancang komponen UI yang reusable dan konsisten untuk aplikasi web menggunakan Figma.",
-    tech: ["Figma", "Storybook"],
-    link: "#",
-    image: "https://images.unsplash.com/photo-1600132806378-62402124d9e0?q=80&w=2070&auto=format&fit=crop",
+    title: "gilang-storage-sdk / MyTools (NPM)",
+    description: "High-fidelity client-side optimization SDK & npm packages for compressing heavy images, PDFs, videos, and office documents directly in browser without server upload.",
+    tech: ["JavaScript", "TypeScript", "NPM Package", "Web APIs"],
+    link: "https://github.com/gilangrizkyr/MyTools",
+    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2070&auto=format&fit=crop",
     category: "Web/Apps",
   },
   {
-    title: "3D Product Visualization",
-    description: "Desain 3D interaktif untuk showcase produk menggunakan Spline dan Blender.",
-    tech: ["Spline", "Blender"],
-    link: "#",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop",
-    category: "3D Design",
+    title: "DataInvest - DPMPTSP Kalsel",
+    description: "Aplikasi pengolahan dan analisis realisasi investasi dengan visualisasi statistik interaktif yang disesuaikan untuk kebutuhan dinas penanaman modal.",
+    tech: ["React.js", "Next.js", "CodeIgniter 4", "PostgreSQL"],
+    link: "https://github.com/gilangrizkyr/DataInvest",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
+    category: "Web/Apps",
   },
   {
-    title: "Animated 3D Landing",
-    description: "Landing page dengan elemen 3D animasi untuk branding modern.",
-    tech: ["Spline", "Three.js"],
-    link: "#",
-    image: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?q=80&w=2070&auto=format&fit=crop",
-    category: "3D Design",
+    title: "Geotagging Tata Ruang RDTR & RTRW",
+    description: "Aplikasi pemetaan spasial dan geotagging berbasis peta interaktif Leaflet untuk pengelolaan data tata ruang wilayah pemerintah.",
+    tech: ["React.js", "Leaflet", "GIS", "PostgreSQL", "TailwindCSS"],
+    link: "https://github.com/gilangrizkyr/GeoTagging",
+    image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop",
+    category: "Web/Apps",
+  },
+  {
+    title: "Laporin - Sistem Pengaduan",
+    description: "Platform terpadu untuk penanganan keluhan, pengaduan masyarakat, serta permintaan fitur internal perkantoran secara transparan.",
+    tech: ["React.js", "Next.js", "REST API", "MySQL"],
+    link: "https://github.com/gilangrizkyr/Laporin",
+    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop",
+    category: "Web/Apps",
+  },
+  {
+    title: "Quantura - AI Inventory System",
+    description: "Sistem manajemen inventaris perusahaan cerdas yang terintegrasi Artificial Intelligence untuk otomatisasi pengelolaan produk dan prediksi stok.",
+    tech: ["React.js", "Express", "AI Integration", "TailwindCSS"],
+    link: "https://github.com/gilangrizkyr/Quantura",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop",
+    category: "Web/Apps",
+  },
+  {
+    title: "TemanNakes",
+    description: "Asisten klinis mobile offline untuk tenaga kesehatan dengan katalog referensi obat lengkap dan kalkulator dosis medis presisi.",
+    tech: ["Dart", "Flutter", "Offline First", "Mobile"],
+    link: "https://github.com/gilangrizkyr/TemanNakes",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop",
+    category: "Web/Apps",
   },
 ];
 
 // ===================================
-// DATA SERTIFIKAT ZAIN AHMAD FAHREZI
+// DATA SERTIFIKAT GILANG RIZKY RAMADHAN
 // ===================================
 const userCertificates = [
   {
-    title: "Belajar Membuat Aplikasi Web dengan React",
-    issuer: "Dicoding Indonesia",
-    date: "Des 2024",
-    link: "/certificates/Belajar Membuat Aplikasi Web dengan React.pdf",
-    image: "/certificate-images/Belajar Membuat Aplikasi Web dengan React.jpg",
-  },
-  {
-    title: "Belajar Dasar Pemrograman JavaScript",
-    issuer: "Dicoding Indonesia",
-    date: "Des 2024",
-    link: "/certificates/Belajar Dasar Pemrograman JavaScript.pdf",
-    image: "/certificate-images/Belajar Dasar Pemrograman JavaScript.jpg",
-  },
-  {
-    title: "Junior Web Developer (BNSP)",
+    title: "BNSP Certified Program Analyst",
     issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
-    date: "Sep 2024",
-    link: "/certificates/SERTIFIKAT BNSP JUNIOR WEB DEVELOPER ZAIN AHMAD FAHREZI.jpeg",
-    image: "/certificate-images/SERTIFIKAT BNSP JUNIOR WEB DEVELOPER ZAIN AHMAD FAHREZI.jpg",
+    date: "15 Sep 2025",
+    link: "/cv.pdf",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070&auto=format&fit=crop",
   },
   {
-    title: "Belajar Membuat Front-End Web untuk Pemula",
-    issuer: "Dicoding Indonesia",
-    date: "Des 2024",
-    link: "/certificates/Belajar Membuat Front-End Web untuk Pemula.pdf",
-    image: "/certificate-images/Belajar Membuat Front-End Web untuk Pemula.jpg",
-  },
-  {
-    title: "Operator Komputer Madya (BNSP)",
+    title: "BNSP Certified Programmer (Software Development)",
     issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
-    date: "Des 2024",
-    link: "/certificates/Operator Komputer Madya BNSP.jpeg",
-    image: "/certificate-images/Operator Komputer Madya BNSP.jpg",
+    date: "5 Feb 2025",
+    link: "/cv.pdf",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop",
   },
   {
-    title: "Belajar Dasar Data Science",
-    issuer: "Dicoding Indonesia",
-    date: "Okt 2024",
-    link: "/certificates/Belajar Dasar Data Science.pdf",
-    image: "/certificate-images/Belajar Dasar Data Science.jpg",
+    title: "D3 Sistem Informasi (IPK 3.51)",
+    issuer: "Universitas Bina Sarana Informatika, Pontianak",
+    date: "Sep 2021 – Agu 2025",
+    link: "/cv.pdf",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop",
   },
   {
-    title: "Belajar Dasar Structured Query Language (SQL)",
-    issuer: "Dicoding Indonesia",
-    date: "Okt 2024",
-    link: "/certificates/Belajar Dasar Structured Query Language (SQL).pdf",
-    image: "/certificate-images/Belajar Dasar Structured Query Language (SQL).jpg",
-  },
-  {
-    title: "Belajar Dasar AI",
-    issuer: "Dicoding Indonesia",
-    date: "Sep 2024",
-    link: "/certificates/Belajar Dasar AI.pdf",
-    image: "/certificate-images/Belajar Dasar AI.jpg",
-  },
-  {
-    title: "Belajar Dasar Manajemen Proyek",
-    issuer: "Dicoding Indonesia",
-    date: "Sep 2024",
-    link: "/certificates/Belajar Dasar Manajemen Proyek.pdf",
-    image: "/certificate-images/Belajar Dasar Manajemen Proyek.jpg",
-  },
-  {
-    title: "Operator Komputer Madya (VSGA)",
-    issuer: "Digital Talent Scholarship",
-    date: "Agu 2024",
-    link: "/certificates/Operator Komputer Madya VSGA.pdf",
-    image: "/certificate-images/Operator Komputer Madya VSGA.jpg",
-  },
-  {
-    title: "Junior Web Developer (VSGA)",
-    issuer: "Kominfo",
-    date: "Jul 2024",
-    link: "/certificates/Junior Web Developer VSGA.pdf",
-    image: "/certificate-images/Junior Web Developer VSGA.jpg",
-  },
-  {
-    title: "Java Fundamentals",
-    issuer: "Oracle",
-    date: "Jun 2024",
-    link: "/certificates/JAVA FUNDAMENTALS.pdf",
-    image: "/certificate-images/JAVA FUNDAMENTALS.jpg",
-  },
-  {
-    title: "Belajar Dasar Pemrograman Web",
-    issuer: "Dicoding Indonesia",
-    date: "Nov 2023",
-    link: "/certificates/Belajar Dasar Pemrograman Web.pdf",
-    image: "/certificate-images/Belajar Dasar Pemrograman Web.jpg",
+    title: "Tenaga Ahli IT DPMPTSP Kalimantan Selatan",
+    issuer: "DPMPTSP Provinsi Kalimantan Selatan",
+    date: "Nov 2025 – Sekarang",
+    link: "/cv.pdf",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop",
   },
 ];
 
 const techStack = {
   frontend: [
-    { name: "React", icon: <FaReact className="text-[#61DAFB]" /> },
+    { name: "React.js", icon: <FaReact className="text-[#61DAFB]" /> },
     { name: "Next.js", icon: <SiNextdotjs className="dark:text-white text-slate-900" /> },
-    { name: "JavaScript", icon: <FaJsSquare className="text-[#F7DF1E]" /> },
+    { name: "TypeScript", icon: <SiTypescript className="text-[#3178C6]" /> },
     { name: "Tailwind CSS", icon: <SiTailwindcss className="text-[#38B2AC]" /> },
-    { name: "HTML5", icon: <FaHtml5 className="text-[#E34F26]" /> },
-    { name: "CSS3", icon: <FaCss3Alt className="text-[#1572B6]" /> },
+    { name: "Leaflet GIS", icon: <SiLeaflet className="text-[#199900]" /> },
+    { name: "JavaScript", icon: <FaJsSquare className="text-[#F7DF1E]" /> },
   ],
   backend: [
     { name: "Node.js", icon: <FaNodeJs className="text-[#339933]" /> },
     { name: "Express", icon: <SiExpress className="dark:text-white text-slate-900" /> },
+    { name: "CodeIgniter 4", icon: <SiCodeigniter className="text-[#EE4623]" /> },
+    { name: "PHP", icon: <SiPhp className="text-[#777BB4]" /> },
   ],
   database: [
-    { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" /> },
     { name: "PostgreSQL", icon: <SiPostgresql className="text-[#336791]" /> },
+    { name: "MySQL", icon: <SiMysql className="text-[#4479A1]" /> },
   ],
   tools: [
+    { name: "Docker", icon: <SiDocker className="text-[#2496ED]" /> },
     { name: "Git & GitHub", icon: <FaGithub className="dark:text-white text-slate-900" /> },
+    { name: "Linux / VPS", icon: <FaTools className="text-cyan-400" /> },
     { name: "Vercel", icon: <SiVercel className="dark:text-white text-slate-900" /> },
-    { name: "Figma", icon: <FaFigma className="text-[#F24E1E]" /> },
-    { name: "Tools Lain", icon: <FaTools className="text-gray-400" /> },
   ],
 };
 

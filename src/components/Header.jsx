@@ -186,11 +186,11 @@ const Header = () => {
                 <div className="w-full flex items-center justify-between md:hidden">
                   {/* Mobile: Brand Logo & Text (Left) */}
                   <a href="/" onClick={(e) => handleNavClick(e, '#home')} className="flex items-center gap-3">
-                    <img src={bangzenLogo} alt="Bangzen Logo" className="h-12 w-12 flex-shrink-0" />
+                    <img src={bangzenLogo} alt="Gilang Rizky Logo" className="h-11 w-11 flex-shrink-0" />
                     <div>
-                      <h1 className="font-moderniz text-sm dark:text-[#00ffdc] text-slate-800 whitespace-nowrap">Zain Ahmad Fahrezi</h1>
+                      <h1 className="font-moderniz text-sm dark:text-[#00ffdc] text-slate-800 whitespace-nowrap">Gilang Rizky R</h1>
                       <p className="font-moderniz text-[9px] dark:text-[#00ffdc] text-slate-600" style={{ textShadow: 'none' }}>
-                        Let's see the awesome Experience
+                        Full Stack Developer
                       </p>
                     </div>
                   </a>
@@ -215,11 +215,11 @@ const Header = () => {
                     onClick={(e) => handleNavClick(e, '#home')}
                     className="justify-self-center flex items-center gap-3"
                   >
-                    <img src={bangzenLogo} alt="Bangzen Logo" className="h-12 w-12" />
-                    <div className="block">
-                      <h1 className="font-moderniz text-base dark:text-[#00ffdc] text-slate-800">Zain Ahmad Fahrezi</h1>
+                    <img src={bangzenLogo} alt="Gilang Rizky Logo" className="h-11 w-11" />
+                    <div className="block text-left">
+                      <h1 className="font-moderniz text-base dark:text-[#00ffdc] text-slate-800 whitespace-nowrap">Gilang Rizky R</h1>
                       <p className="font-moderniz text-[10px] dark:text-[#00ffdc] text-slate-600" style={{ textShadow: 'none' }}>
-                        Let's see the awesome Experience
+                        Full Stack Developer
                       </p>
                     </div>
                   </a>
@@ -262,6 +262,9 @@ const Header = () => {
           { label: 'Contact', link: '#contact', onClick: (e) => handleNavClick(e, '#contact') },
         ]}
         socialItems={[
+          { label: 'GitHub', link: 'https://github.com/gilangrizkyr' },
+          { label: 'LinkedIn', link: 'https://www.linkedin.com/in/gilang-rizky-39a421297/' },
+          { label: 'Instagram', link: 'https://www.instagram.com/gilangrizky_000/' },
           { label: 'Admin', link: '#', onClick: (e) => { e.preventDefault(); handleAdminAccess(); } }
         ]}
         displaySocials={true}

@@ -8,7 +8,7 @@ const Preloader = ({ onFinished }) => {
   const [showContent, setShowContent] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
   const [isAssetLoaded, setIsAssetLoaded] = useState(false);
-  const fullText = "www.zainahmadfahrezi.me";
+  const fullText = "github.com/gilangrizkyr";
 
   const handleAssetLoad = () => {
     setIsAssetLoaded(true);
@@ -26,7 +26,7 @@ const Preloader = ({ onFinished }) => {
       if (typedText.length < fullText.length) {
         const typingTimer = setTimeout(() => {
           setTypedText(fullText.slice(0, typedText.length + 1));
-        }, 120);
+        }, 100);
         return () => clearTimeout(typingTimer);
       } else if (typedText.length === fullText.length && isAssetLoaded) {
         const exitTimer = setTimeout(() => {
@@ -68,7 +68,7 @@ const Preloader = ({ onFinished }) => {
                 animate={{ opacity: 1, scale: 1, transition: { duration: 0.8, delay: 0.2, ease: "easeOut" } }}
                 className="text-4xl md:text-6xl font-moderniz font-bold mb-4"
               >
-                Zain Ahmad Fahrezi
+                Gilang Rizky R
               </motion.h1>
               <motion.div
                 initial={{ opacity: 0 }}
@@ -83,13 +83,13 @@ const Preloader = ({ onFinished }) => {
                 animate={{ opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.8 } }}
                 className="flex justify-center gap-6"
               >
-                <a href="https://github.com/zainahmadf28" target="_blank" rel="noopener noreferrer" className="dark:hover:text-[#00ffdc] hover:text-cyan-600 transition-all duration-300 transform hover:scale-110">
+                <a href="https://github.com/gilangrizkyr" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="dark:hover:text-[#00ffdc] hover:text-cyan-600 transition-all duration-300 transform hover:scale-110">
                   <Github size={32} />
                 </a>
-                <a href="https://www.linkedin.com/in/zain-ahmad-fahrezi-7a8a912a7/" target="_blank" rel="noopener noreferrer" className="dark:hover:text-[#00ffdc] hover:text-cyan-600 transition-all duration-300 transform hover:scale-110">
+                <a href="https://www.linkedin.com/in/gilang-rizky-39a421297/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="dark:hover:text-[#00ffdc] hover:text-cyan-600 transition-all duration-300 transform hover:scale-110">
                   <Linkedin size={32} />
                 </a>
-                <a href="https://www.instagram.com/zainahmadf" target="_blank" rel="noopener noreferrer" className="dark:hover:text-[#00ffdc] hover:text-cyan-600 transition-all duration-300 transform hover:scale-110">
+                <a href="https://www.instagram.com/gilangrizky_000/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="dark:hover:text-[#00ffdc] hover:text-cyan-600 transition-all duration-300 transform hover:scale-110">
                   <Instagram size={32} />
                 </a>
               </motion.div>
