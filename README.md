@@ -1,10 +1,10 @@
 # PORTFOLIO GILANG RIZKY RAMADHAN
 
-Proyek website portofolio interaktif yang dikembangkan menggunakan React 18 dan Vite — dibangun dengan performa tinggi, elemen 3D interaktif Three.js/Rapier, animasi dinamis Framer Motion & GSAP, serta CMS terintegrasi.
+Proyek website portofolio interaktif yang dikembangkan menggunakan React 18 dan Vite — dibangun dengan performa tinggi, elemen 3D interaktif Three.js/Rapier, animasi dinamis Framer Motion & GSAP, serta manajemen proyek terintegrasi.
 
 ---
 
-## 🚀 Profil Pengembang
+## Profil Pengembang
 * **Nama**: Gilang Rizky Ramadhan
 * **Peran**: Full Stack Developer
 * **Lokasi**: Pontianak, Kalimantan Barat, Indonesia
@@ -15,32 +15,48 @@ Proyek website portofolio interaktif yang dikembangkan menggunakan React 18 dan 
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
-
-### Core & Frontend
-* ⚛️ [React](https://react.dev/) & [Vite](https://vitejs.dev/)
-* 💨 [Tailwind CSS](https://tailwindcss.com/)
-* 🗺️ [Leaflet](https://leafletjs.com/) (Peta interaktif)
-
-### Backend & Database
-* 🟢 [Node.js](https://nodejs.org/) & [Express](https://expressjs.com/)
-* 🔥 [CodeIgniter 4](https://codeigniter.com/) / PHP
-* 🗄️ [PostgreSQL](https://www.postgresql.org/) & [MySQL](https://www.mysql.com/)
-* ⚡ [Supabase](https://supabase.com/)
-
-### Animasi & 3D
-* 🧊 [Three.js](https://threejs.org/), [React Three Fiber](https://docs.pmnd.rs/react-three-fiber), & Rapier Physics
-* 🎬 [Framer Motion](https://www.framer.com/motion/)
-* 🎭 [GSAP](https://greensock.com/gsap/)
+## Proyek Unggulan
+* **[TailNews](https://github.com/gilangrizkyr/TailNews)** — Dynamic full-stack news portal with Go (Golang) REST API, Astro SSR frontend, React admin, MySQL, and Redis caching.
+* **[SurveiCoreSystem](https://github.com/gilangrizkyr/SurveiCoreSystem)** — Enterprise-grade survey infrastructure platform with multi-tenant architecture and real-time analytics.
+* **[WA Gateway (wagateaway)](https://github.com/gilangrizkyr/wagateaway)** — WhatsApp API gateway with token-based REST API and realtime WebSocket.
+* **[gilang-storage-sdk / MyTools](https://github.com/gilangrizkyr/MyTools)** — Client-side compression SDK & NPM packages for heavy media files.
+* **[DataInvest](https://github.com/gilangrizkyr/DataInvest)** — Realization investment analysis & interactive spatial dashboard for DPMPTSP.
+* **[GeoTagging](https://github.com/gilangrizkyr/GeoTagging)** — Interactive Leaflet GIS spatial mapping for government RDTR & RTRW data.
+* **[TemanNakes](https://github.com/gilangrizkyr/TemanNakes)** — Offline-first clinical medical assistant mobile app built with Flutter & Dart.
 
 ---
 
-## 💻 Cara Menjalankan Proyek Ini
+## Komprehensif Tech Stack
+
+### Bahasa Pemrograman
+* **Go (Golang)**, **TypeScript**, **JavaScript (ES6+)**, **PHP**, **Python**, **Dart**, **HTML5**, **CSS3**
+
+### Frontend Frameworks & Libraries
+* **React.js**, **Next.js**, **Astro SSR**, **Tailwind CSS**, **Bootstrap**, **Leaflet GIS**
+
+### Backend & API
+* **Go REST API**, **Node.js**, **Express.js**, **CodeIgniter 4**, **RESTful APIs**, **WebSocket**, **Postman**
+
+### Database & Caching
+* **PostgreSQL**, **MySQL**, **Redis**, **MongoDB**, **Supabase**
+
+### Mobile Development
+* **Flutter**, **Dart** (Offline-First Architecture)
+
+### DevOps, Tools & Cloud
+* **Docker**, **Git & GitHub**, **Linux / VPS (SSH)**, **Vercel**, **NPM Packages**
+
+### Animasi & 3D Interactive
+* **Three.js**, **React Three Fiber (R3F)**, **Rapier Physics**, **Framer Motion**, **GSAP**
+
+---
+
+## Cara Menjalankan Proyek Ini
 
 1. **Clone repositori ini:**
    ```bash
-   git clone https://github.com/gilangrizkyr/gilang-portfolio.git
-   cd gilang-portfolio
+   git clone https://github.com/gilangrizkyr/Portofolio.git
+   cd Portofolio
    ```
 
 2. **Install dependencies:**
@@ -58,7 +74,7 @@ Proyek website portofolio interaktif yang dikembangkan menggunakan React 18 dan 
    ```bash
    npm run dev
    ```
-   Buka browser di: [http://localhost:5173](http://localhost:5173)
+   Buka browser di: [http://localhost:5174](http://localhost:5174)
 
 5. **Build untuk produksi:**
    ```bash
@@ -67,10 +83,10 @@ Proyek website portofolio interaktif yang dikembangkan menggunakan React 18 dan 
 
 ---
 
-## 🌐 Kontak & Media Sosial
+## Kontak & Media Sosial
 
-* 💼 [LinkedIn](https://www.linkedin.com/in/gilang-rizky-39a421297/)
-* 🐙 [GitHub](https://github.com/gilangrizkyr)
-* 📸 [Instagram](https://www.instagram.com/gilangrizky_000/)
-* ✉️ Email: `gilangrizkyramadhan34@gmail.com`
-* 📱 WhatsApp / Telepon: `0896-9415-6005`
+* **LinkedIn**: [gilang-rizky-39a421297](https://www.linkedin.com/in/gilang-rizky-39a421297/)
+* **GitHub**: [gilangrizkyr](https://github.com/gilangrizkyr)
+* **Instagram**: [@gilangrizky_000](https://www.instagram.com/gilangrizky_000/)
+* **Email**: `gilangrizkyramadhan34@gmail.com`
+* **Telepon / WhatsApp**: `0896-9415-6005`

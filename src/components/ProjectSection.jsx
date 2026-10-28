@@ -3,12 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaExternalLinkAlt, FaReact, FaNodeJs, FaHtml5, FaCss3Alt,
-  FaJsSquare, FaTools, FaFigma, FaGithub, FaTimes, FaDownload
+  FaJsSquare, FaGithub, FaTimes, FaDownload, FaStar
 } from 'react-icons/fa';
 import {
   SiTailwindcss, SiNextdotjs, SiVercel, SiMongodb,
   SiExpress, SiPostgresql, SiTypescript, SiDocker,
-  SiMysql, SiPhp, SiCodeigniter, SiLeaflet
+  SiMysql, SiPhp, SiCodeigniter, SiLeaflet,
+  SiGo, SiAstro, SiRedis, SiBootstrap, SiFlutter, SiDart, SiPostman, SiPython, SiLinux
 } from 'react-icons/si';
 import { PiCodeBold } from "react-icons/pi";
 import { LuBadge } from "react-icons/lu";
@@ -21,12 +22,22 @@ import { supabase } from '../lib/supabase';
 // ===================================
 const dummyProjects = [
   {
+    title: "TailNews",
+    description: "Dynamic full-stack news portal with high-performance Go (Golang) REST API, Astro SSR frontend for SEO optimization, React.js admin dashboard, MySQL database, and Redis caching.",
+    tech: ["Go (Golang)", "Astro SSR", "React.js", "Redis", "MySQL", "Tailwind CSS"],
+    link: "https://github.com/gilangrizkyr/TailNews",
+    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070&auto=format&fit=crop",
+    category: "Web/Apps",
+    featured: true,
+  },
+  {
     title: "SurveiCoreSystem",
     description: "Enterprise-grade survey infrastructure platform with multi-tenant architecture, bank-level security, and real-time analytics for government & corporate data governance.",
-    tech: ["PHP", "MySQL", "Multi-Tenant", "Analytics", "REST API"],
+    tech: ["PHP", "MySQL", "CodeIgniter 4", "REST API", "Tailwind CSS"],
     link: "https://github.com/gilangrizkyr/SurveiCoreSystem",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
     category: "Web/Apps",
+    featured: true,
   },
   {
     title: "WA Gateway (wagateaway)",
@@ -39,10 +50,10 @@ const dummyProjects = [
   {
     title: "gilang-storage-sdk / MyTools (NPM)",
     description: "High-fidelity client-side optimization SDK & npm packages for compressing heavy images, PDFs, videos, and office documents directly in browser without server upload.",
-    tech: ["JavaScript", "TypeScript", "NPM Package", "Web APIs"],
+    tech: ["JavaScript", "TypeScript", "Node.js", "Docker"],
     link: "https://github.com/gilangrizkyr/MyTools",
     image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2070&auto=format&fit=crop",
-    category: "Web/Apps",
+    category: "Tools & SDK",
   },
   {
     title: "DataInvest - DPMPTSP Kalsel",
@@ -55,7 +66,7 @@ const dummyProjects = [
   {
     title: "Geotagging Tata Ruang RDTR & RTRW",
     description: "Aplikasi pemetaan spasial dan geotagging berbasis peta interaktif Leaflet untuk pengelolaan data tata ruang wilayah pemerintah.",
-    tech: ["React.js", "Leaflet", "GIS", "PostgreSQL", "TailwindCSS"],
+    tech: ["React.js", "Leaflet", "PostgreSQL", "Tailwind CSS"],
     link: "https://github.com/gilangrizkyr/GeoTagging",
     image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop",
     category: "Web/Apps",
@@ -63,7 +74,7 @@ const dummyProjects = [
   {
     title: "Laporin - Sistem Pengaduan",
     description: "Platform terpadu untuk penanganan keluhan, pengaduan masyarakat, serta permintaan fitur internal perkantoran secara transparan.",
-    tech: ["React.js", "Next.js", "REST API", "MySQL"],
+    tech: ["React.js", "Next.js", "MySQL", "Tailwind CSS"],
     link: "https://github.com/gilangrizkyr/Laporin",
     image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop",
     category: "Web/Apps",
@@ -71,7 +82,7 @@ const dummyProjects = [
   {
     title: "Quantura - AI Inventory System",
     description: "Sistem manajemen inventaris perusahaan cerdas yang terintegrasi Artificial Intelligence untuk otomatisasi pengelolaan produk dan prediksi stok.",
-    tech: ["React.js", "Express", "AI Integration", "TailwindCSS"],
+    tech: ["React.js", "Express", "Node.js", "Tailwind CSS"],
     link: "https://github.com/gilangrizkyr/Quantura",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop",
     category: "Web/Apps",
@@ -79,10 +90,10 @@ const dummyProjects = [
   {
     title: "TemanNakes",
     description: "Asisten klinis mobile offline untuk tenaga kesehatan dengan katalog referensi obat lengkap dan kalkulator dosis medis presisi.",
-    tech: ["Dart", "Flutter", "Offline First", "Mobile"],
+    tech: ["Dart", "Flutter", "Mobile"],
     link: "https://github.com/gilangrizkyr/TemanNakes",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop",
-    category: "Web/Apps",
+    category: "Mobile",
   },
 ];
 
@@ -121,30 +132,84 @@ const userCertificates = [
 ];
 
 const techStack = {
-  frontend: [
+  "Programming Languages": [
+    { name: "Go (Golang)", icon: <SiGo className="text-[#00ADD8]" /> },
+    { name: "TypeScript", icon: <SiTypescript className="text-[#3178C6]" /> },
+    { name: "JavaScript", icon: <FaJsSquare className="text-[#F7DF1E]" /> },
+    { name: "PHP", icon: <SiPhp className="text-[#777BB4]" /> },
+    { name: "Python", icon: <SiPython className="text-[#3776AB]" /> },
+    { name: "Dart", icon: <SiDart className="text-[#0175C2]" /> },
+    { name: "HTML5", icon: <FaHtml5 className="text-[#E34F26]" /> },
+    { name: "CSS3", icon: <FaCss3Alt className="text-[#1572B6]" /> },
+  ],
+  "Frontend Frameworks": [
     { name: "React.js", icon: <FaReact className="text-[#61DAFB]" /> },
     { name: "Next.js", icon: <SiNextdotjs className="dark:text-white text-slate-900" /> },
-    { name: "TypeScript", icon: <SiTypescript className="text-[#3178C6]" /> },
+    { name: "Astro SSR", icon: <SiAstro className="text-[#BC52EE]" /> },
     { name: "Tailwind CSS", icon: <SiTailwindcss className="text-[#38B2AC]" /> },
+    { name: "Bootstrap", icon: <SiBootstrap className="text-[#7952B3]" /> },
     { name: "Leaflet GIS", icon: <SiLeaflet className="text-[#199900]" /> },
-    { name: "JavaScript", icon: <FaJsSquare className="text-[#F7DF1E]" /> },
   ],
-  backend: [
+  "Backend & API": [
+    { name: "Go REST API", icon: <SiGo className="text-[#00ADD8]" /> },
     { name: "Node.js", icon: <FaNodeJs className="text-[#339933]" /> },
-    { name: "Express", icon: <SiExpress className="dark:text-white text-slate-900" /> },
+    { name: "Express.js", icon: <SiExpress className="dark:text-white text-slate-900" /> },
     { name: "CodeIgniter 4", icon: <SiCodeigniter className="text-[#EE4623]" /> },
-    { name: "PHP", icon: <SiPhp className="text-[#777BB4]" /> },
+    { name: "Postman", icon: <SiPostman className="text-[#FF6C37]" /> },
   ],
-  database: [
+  "Database & Caching": [
     { name: "PostgreSQL", icon: <SiPostgresql className="text-[#336791]" /> },
     { name: "MySQL", icon: <SiMysql className="text-[#4479A1]" /> },
+    { name: "Redis", icon: <SiRedis className="text-[#DC382D]" /> },
+    { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" /> },
   ],
-  tools: [
+  "Mobile Development": [
+    { name: "Flutter", icon: <SiFlutter className="text-[#02569B]" /> },
+    { name: "Dart", icon: <SiDart className="text-[#0175C2]" /> },
+  ],
+  "DevOps & Infrastructure": [
     { name: "Docker", icon: <SiDocker className="text-[#2496ED]" /> },
     { name: "Git & GitHub", icon: <FaGithub className="dark:text-white text-slate-900" /> },
-    { name: "Linux / VPS", icon: <FaTools className="text-cyan-400" /> },
+    { name: "Linux / VPS (SSH)", icon: <SiLinux className="text-[#FCC624]" /> },
     { name: "Vercel", icon: <SiVercel className="dark:text-white text-slate-900" /> },
   ],
+};
+
+const projectTechIcons = {
+  "Go (Golang)": <SiGo className="text-[#00ADD8]" />,
+  "Go": <SiGo className="text-[#00ADD8]" />,
+  "Astro SSR": <SiAstro className="text-[#BC52EE]" />,
+  "Astro": <SiAstro className="text-[#BC52EE]" />,
+  "React.js": <FaReact className="text-[#61DAFB]" />,
+  "React": <FaReact className="text-[#61DAFB]" />,
+  "Next.js": <SiNextdotjs />,
+  "Node.js": <FaNodeJs className="text-[#339933]" />,
+  "Express": <SiExpress />,
+  "Express.js": <SiExpress />,
+  "CodeIgniter 4": <SiCodeigniter className="text-[#EE4623]" />,
+  "PHP": <SiPhp className="text-[#777BB4]" />,
+  "PostgreSQL": <SiPostgresql className="text-[#336791]" />,
+  "MySQL": <SiMysql className="text-[#4479A1]" />,
+  "Redis": <SiRedis className="text-[#DC382D]" />,
+  "MongoDB": <SiMongodb className="text-[#47A248]" />,
+  "Docker": <SiDocker className="text-[#2496ED]" />,
+  "Flutter": <SiFlutter className="text-[#02569B]" />,
+  "Dart": <SiDart className="text-[#0175C2]" />,
+  "Leaflet": <SiLeaflet className="text-[#199900]" />,
+  "GIS": <SiLeaflet className="text-[#199900]" />,
+  "Tailwind CSS": <SiTailwindcss className="text-[#38B2AC]" />,
+  "TailwindCSS": <SiTailwindcss className="text-[#38B2AC]" />,
+  "Bootstrap": <SiBootstrap className="text-[#7952B3]" />,
+  "JavaScript": <FaJsSquare className="text-[#F7DF1E]" />,
+  "TypeScript": <SiTypescript className="text-[#3178C6]" />,
+  "HTML5": <FaHtml5 className="text-[#E34F26]" />,
+  "CSS3": <FaCss3Alt className="text-[#1572B6]" />,
+  "Vercel": <SiVercel />,
+  "Git & GitHub": <FaGithub />,
+  "Postman": <SiPostman className="text-[#FF6C37]" />,
+  "Python": <SiPython className="text-[#3776AB]" />,
+  "Linux / VPS": <SiLinux className="text-[#FCC624]" />,
+  "Linux": <SiLinux className="text-[#FCC624]" />,
 };
 
 // ===================================
@@ -221,14 +286,6 @@ const CertificateCard = ({ cert, onClick }) => {
 const ProjectDetailModal = ({ project, onClose }) => {
   if (!project) return null;
 
-  const techIcons = {
-    "Next.js": <SiNextdotjs />, "React": <FaReact />, "TailwindCSS": <SiTailwindcss />,
-    "Framer Motion": " गति ", "Node.js": <FaNodeJs />, "Express": <SiExpress />,
-    "MongoDB": <SiMongodb />, "JWT": "🔑", "Figma": <FaFigma />, "Storybook": "📚",
-    "JavaScript": <FaJsSquare />, "HTML5": <FaHtml5 />, "CSS3": <FaCss3Alt />,
-    "PostgreSQL": <SiPostgresql />, "Vercel": <SiVercel />, "Git & GitHub": <FaGithub />
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -265,8 +322,8 @@ const ProjectDetailModal = ({ project, onClose }) => {
               {/* Tags */}
               <div className="flex flex-wrap gap-2 mb-4">
                 {project.tech.map((t, i) => (
-                  <span key={i} className="flex items-center gap-1 text-xs font-mono px-3 py-1.5 rounded-full dark:bg-cyan-500/10 bg-cyan-100 dark:text-cyan-300 text-cyan-700 dark:border-cyan-500/20 border-cyan-300">
-                    {techIcons?.[t]} {t}
+                  <span key={i} className="flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-full dark:bg-cyan-500/10 bg-cyan-100 dark:text-cyan-300 text-cyan-700 dark:border-cyan-500/20 border-cyan-300">
+                    {projectTechIcons[t] || <PiCodeBold className="text-cyan-400" />} {t}
                   </span>
                 ))}
               </div>
@@ -276,7 +333,8 @@ const ProjectDetailModal = ({ project, onClose }) => {
 
               {project.featured && (
                 <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-500/10 border border-yellow-500/20 rounded-lg mb-6">
-                  <span className="text-yellow-400">⭐ Featured Project</span>
+                  <FaStar className="text-yellow-400 text-sm" />
+                  <span className="text-yellow-400 font-medium">Featured Project</span>
                 </div>
               )}
             </div>
@@ -295,10 +353,8 @@ const ProjectDetailModal = ({ project, onClose }) => {
                 </a>
               )}
 
-              {/* Assuming GitHub link might be stored in a different field or same link if generic */}
-              {/* For now using project.link as fallback, ideally should have github specific field passed */}
               <a
-                href={project.link} // Adjust if you have a specific github_url field
+                href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center gap-2 px-6 py-4 dark:bg-slate-800 bg-slate-700 dark:hover:bg-slate-700 hover:bg-slate-600 text-white font-bold rounded-xl dark:border-slate-700 border-slate-600 transition-all duration-300 hover:-translate-y-1"
@@ -318,12 +374,6 @@ const ProjectDetailModal = ({ project, onClose }) => {
 // KOMPONEN KARTU PROYEK
 // ===================================
 const ProjectCard = ({ project, onClick }) => {
-  const techIcons = {
-    "Next.js": <SiNextdotjs />, "React": <FaReact />, "TailwindCSS": <SiTailwindcss />,
-    "Framer Motion": " गति ", "Node.js": <FaNodeJs />, "Express": <SiExpress />,
-    "MongoDB": <SiMongodb />, "JWT": "🔑", "Figma": <FaFigma />, "Storybook": "📚"
-  };
-
   return (
     <div
       onClick={() => onClick(project)}
@@ -346,8 +396,9 @@ const ProjectCard = ({ project, onClick }) => {
         <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 opacity-0 group-hover:opacity-100">
           <div className="flex flex-wrap gap-2">
             {project.tech.slice(0, 3).map((t, i) => (
-              <span key={i} className="flex items-center gap-1 text-xs font-bold px-3 py-1.5 rounded-full bg-cyan-500/20 text-cyan-200 border border-cyan-400/20 backdrop-blur-sm">
-                {techIcons?.[t] || t}
+              <span key={i} className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full bg-cyan-500/20 text-cyan-200 border border-cyan-400/20 backdrop-blur-sm">
+                {projectTechIcons[t] || <PiCodeBold className="text-cyan-400" />}
+                <span>{t}</span>
               </span>
             ))}
             {project.tech.length > 3 && (
@@ -437,7 +488,7 @@ const CertificatePreviewModal = ({ certificate, onClose }) => {
 // ===================================
 function ProjectSection() {
   const [activeTab, setActiveTab] = useState('Projects');
-  const [projectCategory, setProjectCategory] = useState('Web/Apps');
+  const [projectCategory, setProjectCategory] = useState('All');
   const [previewCertificate, setPreviewCertificate] = useState(null);
   const [previewProject, setPreviewProject] = useState(null); // ✨ NEW STATE
   const { hideNavbar, showNavbar } = useNavbar();
@@ -568,6 +619,7 @@ function ProjectSection() {
   const filteredProjects = transformedProjects.filter((p) => {
     // If from database (has category 'Database'), show all
     if (p.category === 'Database') return true;
+    if (projectCategory === 'All') return true;
     // For dummy data, filter by selected category
     return p.category === projectCategory;
   });
@@ -661,9 +713,20 @@ function ProjectSection() {
                 <>
                   {/* Only show category buttons for dummy data */}
                   {projectsFromDB.length === 0 && (
-                    <div className="flex justify-center gap-4 mb-8">
-                      <button className={`px-5 py-2 rounded-full font-semibold transition-all duration-200 border ${projectCategory === 'Web/Apps' ? 'bg-cyan-700/80 text-white border-cyan-400 shadow-cyan-500/10 shadow-lg' : 'bg-slate-900/60 text-cyan-200 border-slate-700 hover:bg-cyan-800/40 hover:text-white'}`} onClick={() => setProjectCategory('Web/Apps')}>Web/Apps</button>
-                      <button className={`px-5 py-2 rounded-full font-semibold transition-all duration-200 border ${projectCategory === '3D Design' ? 'bg-cyan-700/80 text-white border-cyan-400 shadow-cyan-500/10 shadow-lg' : 'bg-slate-900/60 text-cyan-200 border-slate-700 hover:bg-cyan-800/40 hover:text-white'}`} onClick={() => setProjectCategory('3D Design')}>3D Design</button>
+                    <div className="flex flex-wrap justify-center gap-3 mb-8">
+                      {['All', 'Web/Apps', 'Mobile', 'Tools & SDK'].map((cat) => (
+                        <button
+                          key={cat}
+                          className={`px-5 py-2 rounded-full font-semibold transition-all duration-200 border text-sm ${
+                            projectCategory === cat
+                              ? 'bg-cyan-600 text-white border-cyan-400 shadow-cyan-500/20 shadow-lg'
+                              : 'dark:bg-slate-900/60 bg-white dark:text-cyan-200 text-slate-700 dark:border-slate-700 border-slate-200 hover:border-cyan-400'
+                          }`}
+                          onClick={() => setProjectCategory(cat)}
+                        >
+                          {cat}
+                        </button>
+                      ))}
                     </div>
                   )}
 

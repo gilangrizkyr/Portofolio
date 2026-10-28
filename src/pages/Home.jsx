@@ -79,7 +79,7 @@ const Home = () => {
                         <GradientText colors={["#40f2ffff", "#4079ff", "#40fffcff", "#4079ff", "#40f9ffff"]} animationSpeed={3} className="custom-class font-cascadia font-bold" />
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.55, ease: "easeOut" }}>
-                        <TextGenerateEffect words={'I craft robust, scalable, and user-centric web applications from interface to server using React, Next.js, Node.js, and modern cloud technologies.'} />
+                        <TextGenerateEffect words={'I craft high-performance, robust, and scalable full-stack applications using Go (Golang), React, Next.js, Astro, Node.js, and modern cloud architectures.'} />
                     </motion.div>
                     <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.7, delay: 0.7, ease: "easeOut" }}>
                         <Skills />

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaExternalLinkAlt, FaGithub } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaGithub, FaStar } from 'react-icons/fa';
 import { supabase } from '../lib/supabase';
 
 const ProjectsFromDB = () => {
@@ -95,8 +95,8 @@ const ProjectsFromDB = () => {
                 {/* Featured Badge */}
                 {project.featured && (
                   <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1.5 text-xs font-bold rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400 text-slate-900 shadow-lg">
-                      ⭐ Featured
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-full bg-gradient-to-r from-cyan-400 to-emerald-400 text-slate-900 shadow-lg">
+                      <FaStar className="text-xs text-amber-900" /> Featured
                     </span>
                   </div>
                 )}

@@ -2,15 +2,20 @@ import React from 'react';
 
 const Skills = () => {
   const skillsList = [
+    'Go (Golang)',
     'React.js',
     'Next.js',
+    'Astro SSR',
     'TypeScript',
     'Node.js',
     'Express',
     'CodeIgniter 4',
     'PHP',
     'PostgreSQL',
+    'MySQL',
+    'Redis',
     'Docker',
+    'Flutter & Dart',
     'Tailwind CSS'
   ];
 
