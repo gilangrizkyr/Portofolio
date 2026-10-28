@@ -12,7 +12,7 @@ import {
   SiGo, SiAstro, SiRedis, SiBootstrap, SiFlutter, SiDart, SiPostman, SiPython, SiLinux
 } from 'react-icons/si';
 import { PiCodeBold } from "react-icons/pi";
-import { LuBadge } from "react-icons/lu";
+import { LuBadge, LuBriefcase, LuGraduationCap } from "react-icons/lu";
 import { LiaLayerGroupSolid } from "react-icons/lia";
 import { useNavbar } from '../contexts/NavbarContext';
 import { supabase } from '../lib/supabase';
@@ -98,7 +98,71 @@ const dummyProjects = [
 ];
 
 // ===================================
-// DATA SERTIFIKAT GILANG RIZKY RAMADHAN
+// DATA PENGALAMAN KERJA (EXPERIENCE)
+// ===================================
+const userExperiences = [
+  {
+    role: "Tenaga Ahli IT (Full Stack Developer)",
+    company: "DPMPTSP Provinsi Kalimantan Selatan",
+    period: "Nov 2025 – Sekarang",
+    type: "Kontrak Kerja (On-site)",
+    location: "Kalimantan Selatan",
+    highlights: [
+      "Membangun 5 aplikasi web dari nol untuk kebutuhan instansi: Data Investasi Realisasi, Sistem Pengaduan, Survei Perusahaan (sudah rilis), serta MPP Chat WhatsApp dan Aplikasi Geotagging RDTR/RTRW (Leaflet GIS).",
+      "Memegang source code dan mengembangkan 3 aplikasi rilis: Profil Instansi, Perizinan, dan InvestmentBridge.",
+      "Memigrasikan website Profil Instansi dari CodeIgniter 4 ke React.js untuk meningkatkan performa dan kemudahan maintenance.",
+      "Merancang skema database PostgreSQL/MySQL, containerisasi Docker, dan mengelola server VPS Linux lewat SSH."
+    ],
+    skills: ["React.js", "Next.js", "TypeScript", "CodeIgniter 4", "PostgreSQL", "MySQL", "Docker", "Leaflet GIS", "Linux VPS"]
+  },
+  {
+    role: "Freelance Full Stack Developer",
+    company: "Klien Perusahaan & Klien Mandiri",
+    period: "2022 – 2025",
+    type: "Freelance / Remote",
+    location: "Indonesia",
+    highlights: [
+      "Mengerjakan 10+ proyek sistem inventori dan aplikasi bisnis perusahaan secara end-to-end dari analisis kebutuhan, frontend, backend API, hingga deployment server.",
+      "Memetakan alur kerja bisnis klien dan merumuskan perbaikan proses sebelum membangun solusi digital yang efisien."
+    ],
+    skills: ["Go (Golang)", "React.js", "Node.js", "Express", "CodeIgniter 4", "MySQL", "PostgreSQL", "Tailwind CSS", "REST API"]
+  },
+  {
+    role: "Web Developer Intern",
+    company: "Pengadilan Negeri Pontianak",
+    period: "2024",
+    type: "Magang (On-site)",
+    location: "Pontianak, Kalimantan Barat",
+    highlights: [
+      "Membangun sistem informasi manajemen pegawai (SIMPEG) berbasis web untuk pengelolaan data pegawai, riwayat jabatan, dan struktur organisasi instansi.",
+      "Merancang dan mengoptimalkan skema relasi database terintegrasi untuk kebutuhan administrasi kepegawaian."
+    ],
+    skills: ["PHP", "MySQL", "CodeIgniter", "Bootstrap", "Database Design"]
+  }
+];
+
+// ===================================
+// DATA PENDIDIKAN (EDUCATION)
+// ===================================
+const userEducation = [
+  {
+    degree: "D3 Sistem Informasi",
+    institution: "Universitas Bina Sarana Informatika (UBSI), Pontianak",
+    period: "Sep 2021 – Agu 2025",
+    gpa: "IPK 3.51 / 4.00",
+    status: "Lulus (Predikat Sangat Memuaskan)",
+    description: "Fokus studi pada Rekayasa Perangkat Lunak, Arsitektur Basis Data, Analisis & Perancangan Sistem Informasi, serta Pengembangan Aplikasi Berbasis Web dan Mobile.",
+    highlights: [
+      "IPK Akhir: 3.51 / 4.00 (Predikat Sangat Memuaskan)",
+      "Sertifikasi Kompetensi Nasional BNSP Programmer (Software Development)",
+      "Sertifikasi Kompetensi Nasional BNSP Program Analyst",
+      "Skripsi & Proyek Terapan Pengembangan Sistem Informasi Bisnis"
+    ]
+  }
+];
+
+// ===================================
+// DATA SERTIFIKAT RESMI (CERTIFICATES)
 // ===================================
 const userCertificates = [
   {
@@ -114,20 +178,6 @@ const userCertificates = [
     date: "5 Feb 2025",
     link: "/cv.pdf",
     image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop",
-  },
-  {
-    title: "D3 Sistem Informasi (IPK 3.51)",
-    issuer: "Universitas Bina Sarana Informatika, Pontianak",
-    date: "Sep 2021 – Agu 2025",
-    link: "/cv.pdf",
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop",
-  },
-  {
-    title: "Tenaga Ahli IT DPMPTSP Kalimantan Selatan",
-    issuer: "DPMPTSP Provinsi Kalimantan Selatan",
-    date: "Nov 2025 – Sekarang",
-    link: "/cv.pdf",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop",
   },
 ];
 
@@ -575,6 +625,8 @@ function ProjectSection() {
 
   const tabs = [
     { id: 'Projects', label: 'Projects', icon: <PiCodeBold className="text-[1.7em] mb-1" /> },
+    { id: 'Experience', label: 'Experience', icon: <LuBriefcase className="text-[1.5em] mb-1" /> },
+    { id: 'Education', label: 'Education', icon: <LuGraduationCap className="text-[1.5em] mb-1" /> },
     { id: 'Certificate', label: 'Certificates', icon: <LuBadge className="text-[1.5em] mb-1" /> },
     { id: 'Tech Stack', label: 'Tech Stack', icon: <LiaLayerGroupSolid className="text-[1.5em] mb-1" /> },
   ];
@@ -658,14 +710,14 @@ function ProjectSection() {
         <div className="flex justify-center mb-12">
           <motion.div
             layout
-            className="inline-flex w-full max-w-4xl rounded-3xl p-2 shadow-lg border dark:border-slate-800 border-slate-200 dark:bg-gradient-to-r dark:from-[#101624] dark:via-[#0a1627] dark:to-[#0a223a] bg-white backdrop-blur-md"
+            className="inline-flex w-full max-w-5xl rounded-3xl p-1.5 sm:p-2 shadow-lg border dark:border-slate-800 border-slate-200 dark:bg-gradient-to-r dark:from-[#101624] dark:via-[#0a1627] dark:to-[#0a223a] bg-white backdrop-blur-md overflow-x-auto"
             style={{ boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.18)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}
           >
             {tabs.map((tab) => (
               <motion.button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`relative flex flex-1 flex-col items-center justify-center px-2 py-7 rounded-2xl font-semibold text-base transition-colors duration-300 outline-none ${activeTab === tab.id ? "dark:text-white text-slate-900" : "text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-300"}`}
+                className={`relative flex flex-1 flex-col items-center justify-center min-w-[70px] sm:min-w-0 px-1 sm:px-2 py-4 sm:py-6 rounded-2xl font-semibold text-xs sm:text-sm md:text-base transition-colors duration-300 outline-none ${activeTab === tab.id ? "dark:text-white text-slate-900" : "text-slate-400 hover:text-cyan-600 dark:hover:text-cyan-300"}`}
                 whileTap={{ scale: 0.97 }}
                 whileHover={{ scale: 1.03 }}
                 transition={{ type: "spring", stiffness: 400, damping: 20 }}
@@ -679,9 +731,9 @@ function ProjectSection() {
                     style={{ zIndex: -1, opacity: 0.96 }}
                   />
                 )}
-                <span className="relative z-10 flex flex-col items-center gap-2">
+                <span className="relative z-10 flex flex-col items-center gap-1.5 sm:gap-2">
                   {tab.icon}
-                  <span className="font-bold">{tab.label}</span>
+                  <span className="font-bold text-center leading-tight">{tab.label}</span>
                 </span>
               </motion.button>
             ))}
@@ -749,6 +801,111 @@ function ProjectSection() {
                     </div>
                   )}
                 </>
+              )}
+              {activeTab === 'Experience' && (
+                <div className="max-w-4xl mx-auto space-y-8">
+                  {userExperiences.map((exp, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      className="relative p-6 sm:p-8 rounded-2xl dark:bg-slate-900/80 bg-white border dark:border-slate-800 border-slate-200 shadow-lg hover:border-cyan-500/40 transition-all duration-300"
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 border-b dark:border-slate-800 border-slate-100 pb-4">
+                        <div>
+                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 mb-2">
+                            <span>{exp.type}</span>
+                            <span>•</span>
+                            <span>{exp.location}</span>
+                          </div>
+                          <h3 className="text-xl sm:text-2xl font-bold dark:text-white text-slate-900">
+                            {exp.role}
+                          </h3>
+                          <p className="text-base font-semibold text-cyan-600 dark:text-cyan-300 mt-1">
+                            {exp.company}
+                          </p>
+                        </div>
+                        <div className="self-start sm:self-auto px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 whitespace-nowrap">
+                          {exp.period}
+                        </div>
+                      </div>
+
+                      <ul className="space-y-2.5 mb-6">
+                        {exp.highlights.map((item, hIdx) => (
+                          <li key={hIdx} className="flex items-start gap-3 text-sm sm:text-base leading-relaxed dark:text-slate-300 text-slate-600">
+                            <span className="text-cyan-500 mt-1 flex-shrink-0 text-sm">◆</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="flex flex-wrap gap-2 pt-4 border-t dark:border-slate-800/60 border-slate-100">
+                        {exp.skills.map((skill, sIdx) => (
+                          <span
+                            key={sIdx}
+                            className="text-xs font-medium px-3 py-1 rounded-lg dark:bg-slate-800/90 bg-slate-100 dark:text-cyan-200 text-slate-700 border dark:border-slate-700/60 border-slate-200"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              )}
+              {activeTab === 'Education' && (
+                <div className="max-w-4xl mx-auto space-y-8">
+                  {userEducation.map((edu, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="relative p-6 sm:p-8 rounded-2xl dark:bg-slate-900/80 bg-white border dark:border-slate-800 border-slate-200 shadow-lg hover:border-cyan-500/40 transition-all duration-300"
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6 border-b dark:border-slate-800 border-slate-100 pb-5">
+                        <div>
+                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 mb-2">
+                            <span>{edu.status}</span>
+                          </div>
+                          <h3 className="text-2xl sm:text-3xl font-bold dark:text-white text-slate-900">
+                            {edu.degree}
+                          </h3>
+                          <p className="text-lg font-semibold text-cyan-600 dark:text-cyan-300 mt-1">
+                            {edu.institution}
+                          </p>
+                        </div>
+                        <div className="flex flex-col sm:items-end gap-2">
+                          <span className="px-4 py-1.5 rounded-full text-xs font-mono font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 w-max">
+                            {edu.period}
+                          </span>
+                          <span className="px-4 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-amber-500/20 to-emerald-500/20 text-amber-600 dark:text-amber-300 border border-amber-500/30 w-max">
+                            {edu.gpa}
+                          </span>
+                        </div>
+                      </div>
+
+                      <p className="text-sm sm:text-base leading-relaxed dark:text-slate-300 text-slate-600 mb-6">
+                        {edu.description}
+                      </p>
+
+                      <div className="dark:bg-slate-950/40 bg-slate-50 p-5 rounded-xl border dark:border-slate-800/80 border-slate-200/80">
+                        <h4 className="text-xs uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500 mb-3">
+                          Pencapaian & Sorotan Utama:
+                        </h4>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {edu.highlights.map((hl, hIdx) => (
+                            <div key={hIdx} className="flex items-center gap-2.5 text-sm dark:text-slate-200 text-slate-700">
+                              <span className="text-emerald-500 flex-shrink-0 text-sm">✓</span>
+                              <span>{hl}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               )}
               {activeTab === 'Certificate' && (
                 <div className="space-y-8">

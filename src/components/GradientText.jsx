@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-// Definisikan teks yang akan ditampilkan secara bergantian
-const TEXTS_TO_TYPE = ["Front End Developer", "3D Designer"];
+// Definisikan teks yang akan ditampilkan
+const TEXTS_TO_TYPE = ["Full Stack Developer"];
 
 // Komponen utama
 export default function LoopingGradientText({
@@ -33,8 +33,8 @@ export default function LoopingGradientText({
       else {
         if (displayedText.length < currentText.length) {
           setDisplayedText(currentText.substring(0, displayedText.length + 1));
-        } else {
-          // Jeda sejenak setelah selesai mengetik
+        } else if (TEXTS_TO_TYPE.length > 1) {
+          // Jeda sejenak setelah selesai mengetik jika ada lebih dari 1 teks
           setTimeout(() => setIsDeleting(true), pauseDuration);
         }
       }
