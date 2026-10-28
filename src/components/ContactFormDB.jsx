@@ -27,6 +27,22 @@ const ContactFormDB = () => {
     setError(null);
     setSuccess(false);
 
+    if (!supabase) {
+      const existing = JSON.parse(localStorage.getItem('portfolioContactMessages') || '[]');
+      existing.push({ ...formData, created_at: new Date().toISOString() });
+      localStorage.setItem('portfolioContactMessages', JSON.stringify(existing));
+      setSuccess(true);
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+      });
+      setLoading(false);
+      setTimeout(() => setSuccess(false), 5000);
+      return;
+    }
+
     try {
       const { error } = await supabase
         .from('contact_messages')
@@ -200,8 +216,8 @@ const ContactFormDB = () => {
 
         <p className="text-center text-slate-500 text-sm mt-6">
           Or reach me directly at{' '}
-          <a href="mailto:your.email@example.com" className="text-cyan-400 hover:text-cyan-300 transition-colors">
-            your.email@example.com
+          <a href="mailto:gilangrizkyramadhan34@gmail.com" className="text-cyan-400 hover:text-cyan-300 transition-colors">
+            gilangrizkyramadhan34@gmail.com
           </a>
         </p>
       </motion.div>

@@ -6,12 +6,19 @@ class ApiService {
   // Projects (Keeping fetch for now if user has backend, but theoretically should be Supabase too. 
   // Leaving as is to avoid breaking existing flows if they oddly rely on it, but Gallery WILL use Supabase).
   async getProjects() {
+    if (!supabase) {
+      try {
+        const response = await fetch(`${API_URL}/api/projects`);
+        return await response.json();
+      } catch (e) {
+        return { success: false, error: e.message };
+      }
+    }
     try {
       const { data, error } = await supabase.from('projects').select('*').order('created_at', { ascending: false });
       if (error) throw error;
       return data;
     } catch (error) {
-      // Fallback to fetch if supabase fails or just logging
       console.warn('Supabase fetch failed, trying API_URL...', error);
       try {
         const response = await fetch(`${API_URL}/api/projects`);

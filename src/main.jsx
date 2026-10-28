@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
@@ -9,9 +9,9 @@ import './index.css';
 const Main = () => {
   const [isLoading, setIsLoading] = useState(true);
 
-  const handlePreloaderFinished = () => {
+  const handlePreloaderFinished = useCallback(() => {
     setIsLoading(false);
-  };
+  }, []);
 
   return (
     <>

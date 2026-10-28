@@ -10,6 +10,11 @@ const ProjectsFromDB = () => {
 
   useEffect(() => {
     async function fetchProjects() {
+      if (!supabase) {
+        setLoading(false);
+        return;
+      }
+
       try {
         setLoading(true);
         const { data, error } = await supabase

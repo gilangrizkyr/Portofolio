@@ -507,27 +507,23 @@ function ProjectSection() {
   // Fetch projects from database
   useEffect(() => {
     async function fetchProjects() {
+      if (!supabase) {
+        setLoadingProjects(false);
+        return;
+      }
       try {
-        console.log('🔍 Fetching projects from Supabase...');
         const { data, error } = await supabase
           .from('projects')
           .select('*')
           .order('created_at', { ascending: false });
 
-        if (error) {
-          console.error('❌ Error fetching projects:', error);
-          throw error;
-        }
+        if (error) throw error;
 
         if (data && data.length > 0) {
-          console.log('✅ Projects loaded from database:', data.length, 'projects');
-          console.log('📊 Projects data:', data);
           setProjectsFromDB(data);
-        } else {
-          console.log('⚠️ No projects found in database, using fallback data');
         }
       } catch (err) {
-        console.error('❌ Error fetching projects:', err);
+        console.warn('⚠️ Supabase projects fetch fallback:', err);
       } finally {
         setLoadingProjects(false);
       }
@@ -538,27 +534,23 @@ function ProjectSection() {
   // Fetch certificates from database
   useEffect(() => {
     async function fetchCertificates() {
+      if (!supabase) {
+        setLoadingCerts(false);
+        return;
+      }
       try {
-        console.log('🔍 Fetching certificates from Supabase...');
         const { data, error } = await supabase
           .from('certificates')
           .select('*')
           .order('issue_date', { ascending: false });
 
-        if (error) {
-          console.error('❌ Error fetching certificates:', error);
-          throw error;
-        }
+        if (error) throw error;
 
         if (data && data.length > 0) {
-          console.log('✅ Certificates loaded from database:', data.length, 'certificates');
-          console.log('📜 Certificates data:', data);
           setCertificatesFromDB(data);
-        } else {
-          console.log('⚠️ No certificates found in database, using fallback data');
         }
       } catch (err) {
-        console.error('❌ Error fetching certificates:', err);
+        console.warn('⚠️ Supabase certificates fetch fallback:', err);
       } finally {
         setLoadingCerts(false);
       }

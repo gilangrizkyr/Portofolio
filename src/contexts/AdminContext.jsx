@@ -78,6 +78,30 @@ export const AdminProvider = ({ children }) => {
       throw new Error(`Account terkunci. Coba lagi dalam ${remainingTime} menit.`);
     }
 
+    if (!supabase) {
+      if (username === 'admin' && password === 'admin123') {
+        const sessionData = {
+          authenticated: true,
+          timestamp: new Date().getTime(),
+          adminId: 'local-admin',
+          username: 'admin',
+          email: 'admin@local.dev',
+          fullName: 'Gilang Rizky Ramadhan'
+        };
+        localStorage.setItem('adminSession', JSON.stringify(sessionData));
+        setIsAuthenticated(true);
+        setAdminData({
+          id: 'local-admin',
+          username: 'admin',
+          email: 'admin@local.dev',
+          fullName: 'Gilang Rizky Ramadhan'
+        });
+        setLoginAttempts(0);
+        return { success: true, user: sessionData };
+      }
+      throw new Error('Username atau password salah (mode offline: gunakan admin / admin123).');
+    }
+
     try {
       // Call Supabase RPC function to verify login
       const { data, error } = await supabase.rpc('verify_admin_login', {

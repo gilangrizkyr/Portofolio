@@ -5,7 +5,7 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.warn('Supabase credentials not found. Database features will be disabled.');
+  console.info('ℹ️ Running in local offline mode (using local data & localStorage). Optional: set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in .env for cloud database sync.');
 }
 
 export const supabase = supabaseUrl && supabaseAnonKey 

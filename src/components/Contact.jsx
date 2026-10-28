@@ -52,18 +52,28 @@ const Contact = () => {
 
   // Fetch comments dari database
   const fetchComments = async () => {
+    if (!supabase) {
+      const savedComments = localStorage.getItem('portfolioComments');
+      if (savedComments) {
+        try {
+          setComments(JSON.parse(savedComments));
+        } catch {
+          setComments([]);
+        }
+      }
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from('comments')
         .select('*')
-        .order('is_pinned', { ascending: false })  // Pinned comments first
-        .order('created_at', { ascending: false }); // Then by date
+        .order('is_pinned', { ascending: false })
+        .order('created_at', { ascending: false });
 
       if (error) throw error;
 
       if (data) {
-        console.log('✅ Comments fetched from database:', data.length);
-        // Transform data dari Supabase ke format yang dipakai component
         const transformedComments = data.map(comment => ({
           id: comment.id,
           name: comment.name,
@@ -71,16 +81,19 @@ const Contact = () => {
           photo: comment.photo_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(comment.name)}&background=00ffdc&color=000754&size=100`,
           timestamp: comment.created_at,
           likes: comment.likes || 0,
-          isPinned: comment.is_pinned || false  // ✨ NEW: Pin status
+          isPinned: comment.is_pinned || false
         }));
         setComments(transformedComments);
       }
     } catch (error) {
-      console.error('Error fetching comments:', error);
-      // Fallback ke localStorage jika gagal
+      console.warn('Fallback fetching comments from localStorage:', error);
       const savedComments = localStorage.getItem('portfolioComments');
       if (savedComments) {
-        setComments(JSON.parse(savedComments));
+        try {
+          setComments(JSON.parse(savedComments));
+        } catch {
+          setComments([]);
+        }
       }
     }
   };
@@ -89,6 +102,16 @@ const Contact = () => {
   const handleContactSubmit = async (e) => {
     e.preventDefault();
     setIsSubmittingContact(true);
+
+    if (!supabase) {
+      const existing = JSON.parse(localStorage.getItem('portfolioContactMessages') || '[]');
+      existing.push({ ...contactForm, created_at: new Date().toISOString() });
+      localStorage.setItem('portfolioContactMessages', JSON.stringify(existing));
+      alert('Pesan berhasil terkirim! Terima kasih telah menghubungi saya.');
+      setContactForm({ name: '', email: '', message: '' });
+      setIsSubmittingContact(false);
+      return;
+    }
 
     try {
       // Save message to Supabase
@@ -110,13 +133,12 @@ const Contact = () => {
       }
 
       console.log('Message saved to database:', data);
-
-      alert('Pesan berhasil dikirim! Terima kasih telah menghubungi saya. 📧');
+      alert('Pesan berhasil dikirim! Terima kasih telah menghubungi saya.');
       setContactForm({ name: '', email: '', message: '' });
 
     } catch (error) {
       console.error('Error submitting contact form:', error);
-      alert(`Gagal mengirim pesan: ${error.message}. Pastikan koneksi database aktif.`);
+      alert(`Gagal mengirim pesan: ${error.message}.`);
     } finally {
       setIsSubmittingContact(false);
     }
@@ -144,6 +166,25 @@ const Contact = () => {
     if (!commentForm.name.trim() || !commentForm.message.trim()) return;
 
     setIsSubmittingComment(true);
+
+    if (!supabase) {
+      const newComment = {
+        id: Date.now().toString(),
+        name: commentForm.name.trim(),
+        message: commentForm.message.trim(),
+        photo: commentForm.photoPreview || `https://ui-avatars.com/api/?name=${encodeURIComponent(commentForm.name)}&background=00ffdc&color=000754&size=100`,
+        timestamp: new Date().toISOString(),
+        likes: 0,
+        isPinned: false
+      };
+      const updated = [newComment, ...comments];
+      setComments(updated);
+      localStorage.setItem('portfolioComments', JSON.stringify(updated));
+      setCommentForm({ name: '', message: '', photo: null, photoPreview: null });
+      alert('Komentar berhasil diposting!');
+      setIsSubmittingComment(false);
+      return;
+    }
 
     try {
       // Save comment to Supabase
@@ -173,11 +214,11 @@ const Contact = () => {
       setCommentForm({ name: '', message: '', photo: null, photoPreview: null });
 
       // Show success message
-      alert('Comment berhasil dipost! 🎉');
+      alert('Komentar berhasil diposting!');
 
     } catch (error) {
       console.error('Error submitting comment:', error);
-      alert(`Gagal posting comment: ${error.message}. Pastikan koneksi database aktif.`);
+      alert(`Gagal posting comment: ${error.message}.`);
     } finally {
       setIsSubmittingComment(false);
     }
@@ -190,6 +231,15 @@ const Contact = () => {
       const comment = comments.find(c => c.id === commentId);
       if (!comment) return;
 
+      if (!supabase) {
+        const updatedComments = comments.map(c =>
+          c.id === commentId ? { ...c, likes: c.likes + 1 } : c
+        );
+        setComments(updatedComments);
+        localStorage.setItem('portfolioComments', JSON.stringify(updatedComments));
+        return;
+      }
+
       // Update likes in Supabase
       const { error } = await supabase
         .from('comments')
@@ -201,8 +251,6 @@ const Contact = () => {
         throw error;
       }
 
-      console.log('Like updated in database');
-
       // Update local state untuk tampilan langsung
       const updatedComments = comments.map(c =>
         c.id === commentId
@@ -213,7 +261,6 @@ const Contact = () => {
 
     } catch (error) {
       console.error('Error liking comment:', error);
-      alert(`Gagal like comment: ${error.message}`);
     }
   };
 
@@ -597,7 +644,7 @@ const Contact = () => {
       </AnimatePresence>
 
       {/* Custom Scrollbar Styles */}
-      <style jsx>{`
+      <style>{`
         .custom-scrollbar::-webkit-scrollbar {
           width: 6px;
         }

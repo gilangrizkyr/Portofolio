@@ -17,8 +17,15 @@ const Preloader = ({ onFinished }) => {
   useEffect(() => {
     const initialTimer = setTimeout(() => {
       setShowContent(true);
-    }, 500);
-    return () => clearTimeout(initialTimer);
+    }, 400);
+    // Safety fallback: ensure preloader finishes smoothly even if Spline CDN is slow/fails
+    const safetyTimer = setTimeout(() => {
+      setIsAssetLoaded(true);
+    }, 1800);
+    return () => {
+      clearTimeout(initialTimer);
+      clearTimeout(safetyTimer);
+    };
   }, []);
 
   useEffect(() => {
@@ -26,17 +33,25 @@ const Preloader = ({ onFinished }) => {
       if (typedText.length < fullText.length) {
         const typingTimer = setTimeout(() => {
           setTypedText(fullText.slice(0, typedText.length + 1));
-        }, 100);
+        }, 80);
         return () => clearTimeout(typingTimer);
-      } else if (typedText.length === fullText.length && isAssetLoaded) {
+      } else if (typedText.length >= fullText.length && isAssetLoaded && !fadeOut) {
         const exitTimer = setTimeout(() => {
           setFadeOut(true);
-          setTimeout(onFinished, 1000);
-        }, 1500);
+        }, 800);
         return () => clearTimeout(exitTimer);
       }
     }
-  }, [typedText, showContent, fullText, onFinished, isAssetLoaded]);
+  }, [typedText, showContent, fullText, isAssetLoaded, fadeOut]);
+
+  useEffect(() => {
+    if (fadeOut && onFinished) {
+      const finishTimer = setTimeout(() => {
+        onFinished();
+      }, 900);
+      return () => clearTimeout(finishTimer);
+    }
+  }, [fadeOut, onFinished]);
 
   return (
     <AnimatePresence>
@@ -60,6 +75,7 @@ const Preloader = ({ onFinished }) => {
                   <Spline
                     scene="https://prod.spline.design/FcZ66SFMX1YbF-0I/scene.splinecode"
                     onLoad={handleAssetLoad}
+                    onError={() => setIsAssetLoaded(true)}
                   />
                 </div>
               </div>

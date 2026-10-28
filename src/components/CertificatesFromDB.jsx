@@ -13,6 +13,11 @@ const CertificatesFromDB = () => {
 
   useEffect(() => {
     async function fetchCertificates() {
+      if (!supabase) {
+        setLoading(false);
+        return;
+      }
+
       try {
         setLoading(true);
         const { data, error } = await supabase
