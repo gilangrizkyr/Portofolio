@@ -107,7 +107,7 @@ const Contact = () => {
       const existing = JSON.parse(localStorage.getItem('portfolioContactMessages') || '[]');
       existing.push({ ...contactForm, created_at: new Date().toISOString() });
       localStorage.setItem('portfolioContactMessages', JSON.stringify(existing));
-      alert('Pesan berhasil terkirim! Terima kasih telah menghubungi saya.');
+      alert('Message sent successfully! Thank you for reaching out.');
       setContactForm({ name: '', email: '', message: '' });
       setIsSubmittingContact(false);
       return;
@@ -133,12 +133,12 @@ const Contact = () => {
       }
 
       console.log('Message saved to database:', data);
-      alert('Pesan berhasil dikirim! Terima kasih telah menghubungi saya.');
+      alert('Message sent successfully! Thank you for reaching out.');
       setContactForm({ name: '', email: '', message: '' });
 
     } catch (error) {
       console.error('Error submitting contact form:', error);
-      alert(`Gagal mengirim pesan: ${error.message}.`);
+      alert(`Failed to send message: ${error.message || 'Please try again later'}.`);
     } finally {
       setIsSubmittingContact(false);
     }
@@ -181,7 +181,7 @@ const Contact = () => {
       setComments(updated);
       localStorage.setItem('portfolioComments', JSON.stringify(updated));
       setCommentForm({ name: '', message: '', photo: null, photoPreview: null });
-      alert('Komentar berhasil diposting!');
+      alert('Comment posted successfully!');
       setIsSubmittingComment(false);
       return;
     }
@@ -207,18 +207,18 @@ const Contact = () => {
 
       console.log('Comment saved to database:', data);
 
-      // Refresh comments list dari database
+      // Refresh comments list
       await fetchComments();
 
       // Reset form
       setCommentForm({ name: '', message: '', photo: null, photoPreview: null });
 
       // Show success message
-      alert('Komentar berhasil diposting!');
+      alert('Comment posted successfully!');
 
     } catch (error) {
       console.error('Error submitting comment:', error);
-      alert(`Gagal posting comment: ${error.message}.`);
+      alert(`Failed to post comment: ${error.message}.`);
     } finally {
       setIsSubmittingComment(false);
     }
@@ -353,8 +353,8 @@ const Contact = () => {
                     <FaPaperPlane className="text-white text-xl" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-bold dark:text-white text-slate-900">Hubungi Saya</h3>
-                    <p className="dark:text-slate-400 text-slate-600">Ada yang ingin didiskusikan? Kirim pesan ke saya!</p>
+                    <h3 className="text-2xl font-bold dark:text-white text-slate-900">Get In Touch</h3>
+                    <p className="dark:text-slate-400 text-slate-600">Have a question or project idea? Send me a message!</p>
                   </div>
                 </div>
 
@@ -364,7 +364,7 @@ const Contact = () => {
                       <FaUser className="absolute left-4 top-1/2 transform -translate-y-1/2 dark:text-slate-400 text-slate-400 group-focus-within:text-cyan-600 dark:group-focus-within:text-cyan-400 transition-colors duration-300" />
                       <input
                         type="text"
-                        placeholder="Nama Anda"
+                        placeholder="Your Name"
                         value={contactForm.name}
                         onChange={(e) => setContactForm(prev => ({ ...prev, name: e.target.value }))}
                         className="w-full pl-12 pr-4 py-4 dark:bg-slate-800/50 bg-slate-50 border dark:border-slate-600/50 border-slate-200 rounded-xl dark:text-white text-slate-800 dark:placeholder-slate-400 placeholder-slate-400 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 dark:focus:ring-cyan-400/20 transition-all duration-300"
@@ -378,7 +378,7 @@ const Contact = () => {
                       <FaEnvelope className="absolute left-4 top-1/2 transform -translate-y-1/2 dark:text-slate-400 text-slate-500 group-focus-within:text-cyan-400 transition-colors duration-300" />
                       <input
                         type="email"
-                        placeholder="Email Anda"
+                        placeholder="Your Email"
                         value={contactForm.email}
                         onChange={(e) => setContactForm(prev => ({ ...prev, email: e.target.value }))}
                         className="w-full pl-12 pr-4 py-4 dark:bg-slate-800/50 bg-slate-50 border dark:border-slate-600/50 border-slate-200 rounded-xl dark:text-white text-slate-900 dark:placeholder-slate-400 placeholder-slate-500 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 transition-all duration-300"
@@ -391,7 +391,7 @@ const Contact = () => {
                     <div className="relative">
                       <FaComment className="absolute left-4 top-6 dark:text-slate-400 text-slate-500 group-focus-within:text-cyan-400 transition-colors duration-300" />
                       <textarea
-                        placeholder="Pesan Anda"
+                        placeholder="Your Message"
                         rows="4"
                         value={contactForm.message}
                         onChange={(e) => setContactForm(prev => ({ ...prev, message: e.target.value }))}
@@ -413,7 +413,7 @@ const Contact = () => {
                     ) : (
                       <>
                         <FaPaperPlane />
-                        <span>Kirim Pesan</span>
+                        <span>Send Message</span>
                       </>
                     )}
                   </motion.button>
@@ -424,7 +424,7 @@ const Contact = () => {
             {/* Divider */}
             <div className="flex items-center gap-4">
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
-              <span className="text-slate-400 font-semibold">atau</span>
+              <span className="text-slate-400 font-semibold">or</span>
               <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
             </div>
 
@@ -620,7 +620,7 @@ const Contact = () => {
                   {comments.length === 0 && (
                     <div className="text-center py-12 text-slate-400">
                       <FaComment className="text-4xl mx-auto mb-4 opacity-50" />
-                      <p>Belum ada komentar. Jadilah yang pertama!</p>
+                      <p>No comments yet. Be the first to leave one!</p>
                     </div>
                   )}
                 </div>

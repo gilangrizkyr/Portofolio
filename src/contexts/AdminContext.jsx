@@ -75,7 +75,7 @@ export const AdminProvider = ({ children }) => {
     // Check if account is locked
     if (lockoutTime && new Date().getTime() < lockoutTime) {
       const remainingTime = Math.ceil((lockoutTime - new Date().getTime()) / 1000 / 60);
-      throw new Error(`Account terkunci. Coba lagi dalam ${remainingTime} menit.`);
+      throw new Error(`Account locked. Try again in ${remainingTime} minutes.`);
     }
 
     if (!supabase) {
@@ -99,7 +99,7 @@ export const AdminProvider = ({ children }) => {
         setLoginAttempts(0);
         return { success: true, user: sessionData };
       }
-      throw new Error('Username atau password salah (mode offline: gunakan admin / admin123).');
+      throw new Error('Invalid username or password (offline mode: use admin / admin123).');
     }
 
     try {
@@ -111,7 +111,7 @@ export const AdminProvider = ({ children }) => {
 
       if (error) {
         console.error('Login error:', error);
-        throw new Error('Terjadi kesalahan saat login. Silakan coba lagi.');
+        throw new Error('An error occurred during login. Please try again.');
       }
 
       // Check if login successful
@@ -155,19 +155,19 @@ export const AdminProvider = ({ children }) => {
         if (newAttempts >= 3) {
           const lockTime = new Date().getTime() + (15 * 60 * 1000); // 15 minutes
           setLockoutTime(lockTime);
-          throw new Error('Terlalu banyak percobaan login yang gagal. Account terkunci selama 15 menit.');
+          throw new Error('Too many failed login attempts. Account locked for 15 minutes.');
         }
 
-        throw new Error(`Username atau password salah. Sisa percobaan: ${3 - newAttempts}`);
+        throw new Error(`Invalid username or password. Remaining attempts: ${3 - newAttempts}`);
       }
     } catch (err) {
       // If error already thrown, re-throw it
-      if (err.message.includes('Account terkunci') || err.message.includes('Username atau password salah')) {
+      if (err.message.includes('Account locked') || err.message.includes('Invalid username')) {
         throw err;
       }
       
       console.error('Login error:', err);
-      throw new Error('Terjadi kesalahan saat login. Silakan coba lagi.');
+      throw new Error('An error occurred during login. Please try again.');
     }
   };
 

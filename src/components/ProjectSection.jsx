@@ -41,7 +41,7 @@ const dummyProjects = [
   },
   {
     title: "WA Gateway (wagateaway)",
-    description: "API gateway WhatsApp dengan REST API berbasis token, WebSocket realtime, dan dashboard interaktif untuk menyederhanakan alur bisnis.",
+    description: "Token-based WhatsApp API gateway featuring real-time WebSockets, interactive dashboard, and automated webhook triggers for business communication workflows.",
     tech: ["JavaScript", "Node.js", "Express", "WebSocket", "REST API"],
     link: "https://github.com/gilangrizkyr/wagateaway",
     image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2064&auto=format&fit=crop",
@@ -57,7 +57,7 @@ const dummyProjects = [
   },
   {
     title: "DataInvest - DPMPTSP Kalsel",
-    description: "Aplikasi pengolahan dan analisis realisasi investasi dengan visualisasi statistik interaktif yang disesuaikan untuk kebutuhan dinas penanaman modal.",
+    description: "Government investment realization analytics platform featuring interactive statistical data visualization, multi-parameter filtering, and automated reports.",
     tech: ["React.js", "Next.js", "CodeIgniter 4", "PostgreSQL"],
     link: "https://github.com/gilangrizkyr/DataInvest",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop",
@@ -65,7 +65,7 @@ const dummyProjects = [
   },
   {
     title: "Geotagging Tata Ruang RDTR & RTRW",
-    description: "Aplikasi pemetaan spasial dan geotagging berbasis peta interaktif Leaflet untuk pengelolaan data tata ruang wilayah pemerintah.",
+    description: "Interactive GIS spatial mapping and geotagging application powered by Leaflet to streamline urban land use data (RDTR & RTRW) governance.",
     tech: ["React.js", "Leaflet", "PostgreSQL", "Tailwind CSS"],
     link: "https://github.com/gilangrizkyr/GeoTagging",
     image: "https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop",
@@ -73,7 +73,7 @@ const dummyProjects = [
   },
   {
     title: "Laporin - Sistem Pengaduan",
-    description: "Platform terpadu untuk penanganan keluhan, pengaduan masyarakat, serta permintaan fitur internal perkantoran secara transparan.",
+    description: "Integrated public grievance management platform with ticket lifecycle tracking, public submission portal, and SLA resolution monitoring.",
     tech: ["React.js", "Next.js", "MySQL", "Tailwind CSS"],
     link: "https://github.com/gilangrizkyr/Laporin",
     image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop",
@@ -81,7 +81,7 @@ const dummyProjects = [
   },
   {
     title: "Quantura - AI Inventory System",
-    description: "Sistem manajemen inventaris perusahaan cerdas yang terintegrasi Artificial Intelligence untuk otomatisasi pengelolaan produk dan prediksi stok.",
+    description: "Intelligent enterprise inventory management system with AI-driven demand forecasting, real-time stock analytics, and automated procurement workflows.",
     tech: ["React.js", "Express", "Node.js", "Tailwind CSS"],
     link: "https://github.com/gilangrizkyr/Quantura",
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop",
@@ -89,7 +89,7 @@ const dummyProjects = [
   },
   {
     title: "TemanNakes",
-    description: "Asisten klinis mobile offline untuk tenaga kesehatan dengan katalog referensi obat lengkap dan kalkulator dosis medis presisi.",
+    description: "Offline-first mobile clinical assistant for healthcare professionals with comprehensive drug interaction database and precision dosage calculators.",
     tech: ["Dart", "Flutter", "Mobile"],
     link: "https://github.com/gilangrizkyr/TemanNakes",
     image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=2070&auto=format&fit=crop",
@@ -98,65 +98,65 @@ const dummyProjects = [
 ];
 
 // ===================================
-// DATA PENGALAMAN KERJA (EXPERIENCE)
+// DATA EXPERIENCE
 // ===================================
 const userExperiences = [
   {
-    role: "Tenaga Ahli IT (Full Stack Developer)",
-    company: "DPMPTSP Provinsi Kalimantan Selatan",
-    period: "Nov 2025 – Sekarang",
-    type: "Kontrak Kerja (On-site)",
-    location: "Kalimantan Selatan",
+    role: "IT Specialist (Full Stack Developer)",
+    company: "DPMPTSP South Kalimantan Province",
+    period: "Nov 2025 – Present",
+    type: "Contract (On-site)",
+    location: "South Kalimantan, Indonesia",
     highlights: [
-      "Membangun 5 aplikasi web dari nol untuk kebutuhan instansi: Data Investasi Realisasi, Sistem Pengaduan, Survei Perusahaan (sudah rilis), serta MPP Chat WhatsApp dan Aplikasi Geotagging RDTR/RTRW (Leaflet GIS).",
-      "Memegang source code dan mengembangkan 3 aplikasi rilis: Profil Instansi, Perizinan, dan InvestmentBridge.",
-      "Memigrasikan website Profil Instansi dari CodeIgniter 4 ke React.js untuk meningkatkan performa dan kemudahan maintenance.",
-      "Merancang skema database PostgreSQL/MySQL, containerisasi Docker, dan mengelola server VPS Linux lewat SSH."
+      "Architected and engineered 5 web applications from scratch for regional government operations: Investment Realization Analytics, Public Grievance Portal, Corporate Survey System, MPP WhatsApp Chat Gateway, and Urban Spatial Geotagging GIS (Leaflet).",
+      "Maintained and enhanced core production codebases for 3 live platforms: Department Profile Portal, Licensing System, and InvestmentBridge.",
+      "Spearheaded migration of the Department Portal from legacy CodeIgniter 4 to React.js, significantly boosting load performance and UX maintainability.",
+      "Designed robust PostgreSQL/MySQL database schemas, containerized microservices using Docker, and administered Linux VPS infrastructure via SSH."
     ],
     skills: ["React.js", "Next.js", "TypeScript", "CodeIgniter 4", "PostgreSQL", "MySQL", "Docker", "Leaflet GIS", "Linux VPS"]
   },
   {
     role: "Freelance Full Stack Developer",
-    company: "Klien Perusahaan & Klien Mandiri",
+    company: "Independent & Corporate Clients",
     period: "2022 – 2025",
     type: "Freelance / Remote",
     location: "Indonesia",
     highlights: [
-      "Mengerjakan 10+ proyek sistem inventori dan aplikasi bisnis perusahaan secara end-to-end dari analisis kebutuhan, frontend, backend API, hingga deployment server.",
-      "Memetakan alur kerja bisnis klien dan merumuskan perbaikan proses sebelum membangun solusi digital yang efisien."
+      "Delivered 10+ end-to-end custom web and enterprise inventory management systems from stakeholder requirement analysis to production deployment.",
+      "Analyzed and re-engineered client operational workflows to architect optimal, highly scalable digital solutions matching business objectives."
     ],
     skills: ["Go (Golang)", "React.js", "Node.js", "Express", "CodeIgniter 4", "MySQL", "PostgreSQL", "Tailwind CSS", "REST API"]
   },
   {
     role: "Web Developer Intern",
-    company: "Pengadilan Negeri Pontianak",
+    company: "District Court of Pontianak (Pengadilan Negeri Pontianak)",
     period: "2024",
-    type: "Magang (On-site)",
-    location: "Pontianak, Kalimantan Barat",
+    type: "Internship (On-site)",
+    location: "Pontianak, West Kalimantan",
     highlights: [
-      "Membangun sistem informasi manajemen pegawai (SIMPEG) berbasis web untuk pengelolaan data pegawai, riwayat jabatan, dan struktur organisasi instansi.",
-      "Merancang dan mengoptimalkan skema relasi database terintegrasi untuk kebutuhan administrasi kepegawaian."
+      "Engineered an internal Human Resource Information System (SIMPEG) managing employee records, official positions, and institutional hierarchy.",
+      "Designed and optimized relational database schemas ensuring seamless administrative data integrity."
     ],
     skills: ["PHP", "MySQL", "CodeIgniter", "Bootstrap", "Database Design"]
   }
 ];
 
 // ===================================
-// DATA PENDIDIKAN (EDUCATION)
+// DATA EDUCATION
 // ===================================
 const userEducation = [
   {
-    degree: "D3 Sistem Informasi",
+    degree: "Associate Degree (D3) in Information Systems",
     institution: "Universitas Bina Sarana Informatika (UBSI), Pontianak",
-    period: "Sep 2021 – Agu 2025",
-    gpa: "IPK 3.51 / 4.00",
-    status: "Lulus (Predikat Sangat Memuaskan)",
-    description: "Fokus studi pada Rekayasa Perangkat Lunak, Arsitektur Basis Data, Analisis & Perancangan Sistem Informasi, serta Pengembangan Aplikasi Berbasis Web dan Mobile.",
+    period: "Sep 2021 – Aug 2025",
+    gpa: "GPA 3.51 / 4.00",
+    status: "Graduated with High Distinction",
+    description: "Core academic focus in Software Engineering, Relational Database Architecture, Systems Analysis & Design, and Scalable Web Application Development.",
     highlights: [
-      "IPK Akhir: 3.51 / 4.00 (Predikat Sangat Memuaskan)",
-      "Sertifikasi Kompetensi Nasional BNSP Programmer (Software Development)",
-      "Sertifikasi Kompetensi Nasional BNSP Program Analyst",
-      "Skripsi & Proyek Terapan Pengembangan Sistem Informasi Bisnis"
+      "Cumulative GPA: 3.51 / 4.00 (High Distinction)",
+      "National Professional Certification: BNSP Certified Programmer (Software Development)",
+      "National Professional Certification: BNSP Certified Program Analyst",
+      "Applied Capstone Project: Enterprise Information Systems Engineering"
     ]
   }
 ];
@@ -892,7 +892,7 @@ function ProjectSection() {
 
                       <div className="dark:bg-slate-950/40 bg-slate-50 p-5 rounded-xl border dark:border-slate-800/80 border-slate-200/80">
                         <h4 className="text-xs uppercase tracking-wider font-bold text-slate-400 dark:text-slate-500 mb-3">
-                          Pencapaian & Sorotan Utama:
+                          Key Highlights & Achievements:
                         </h4>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           {edu.highlights.map((hl, hIdx) => (
